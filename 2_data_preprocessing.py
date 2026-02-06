@@ -1,29 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Parallelizer for your g4r4 MAT/CSV pipeline.
-
-WHAT THIS DOES
---------------
-- Finds MAT/CSV pairs with your existing matching rules
-- Runs convert_single_file(mat_path, csv_path) in parallel workers
-- Each worker writes one pickle per pair: <mat_stem>__<csv_stem>.pkl
-- Optionally assembles all pickles into a HuggingFace Dataset serially (low RAM)
-- Windows-safe (spawn), worker recycling (maxtasksperchild=1), BLAS thread caps
-
-USAGE
------
-1) Ensure `convert_single_file(mat_path: str, csv_path: str) -> list[dict]` exists.
-   EITHER: paste your function in the placeholder below, OR import it:
-       from your_module import convert_single_file
-
-2) Set ROOT_DIR and OUT_DIR below, then run this file:
-       python parallelize_v2.py
-
-3) Pickles and logs will appear in OUT_DIR. You can assemble later via
-   the provided `assemble_pickles_to_hf(out_dir, features)` function.
-"""
-
 import h5py, numpy as np
 from pathlib import Path
 import pandas as pd
@@ -480,3 +456,4 @@ if __name__ == "__main__":
     except RuntimeError:
         pass
     main()
+
